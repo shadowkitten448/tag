@@ -1,3 +1,21 @@
+function playerMovement () {
+	
+}
+function initVariables () {
+    p1xDir = 0
+    p1yDir = 0
+    p2xDir = 0
+    p2yDir = 0
+    p1xOffset = 0
+    p2xOffset = 1
+}
+let p2yDir = 0
+let p2xDir = 0
+let p1yDir = 0
+let p1xDir = 0
+let p2xOffset = 0
+let p1xOffset = 0
+initVariables()
 let mySprite = sprites.create(img`
     . f f f . f f f f . f f f . 
     f f f f f c c c c f f f f f 
@@ -37,9 +55,11 @@ let mySprite2 = sprites.create(img`
 tiles.setCurrentTilemap(tilemap`level1`)
 tiles.placeOnRandomTile(mySprite, sprites.dungeon.stairSouth)
 tiles.placeOnRandomTile(mySprite2, sprites.dungeon.stairNorth)
-mySprite2.setPosition(mySprite2.x + 1, mySprite2.y)
+mySprite.setPosition(mySprite.x + p1xOffset, mySprite.y)
+mySprite2.setPosition(mySprite2.x + p2xOffset, mySprite2.y)
 for (let value of tiles.getTilesByType(sprites.dungeon.floorLight0)) {
     tiles.setWallAt(value, true)
 }
-controller.moveSprite(mySprite)
-controller.player2.moveSprite(mySprite2)
+game.onUpdate(function () {
+    playerMovement()
+})
