@@ -1,5 +1,32 @@
 function playerMovement () {
-	
+    if (controller.left.isPressed()) {
+        p1xDir = -1
+    }
+    if (controller.right.isPressed()) {
+        p1xDir = 1
+    }
+    if (controller.up.isPressed()) {
+        p1yDir = -1
+    }
+    if (controller.down.isPressed()) {
+        p1yDir = 1
+    }
+    if (controller.player2.isPressed(ControllerButton.Left)) {
+        p2xDir = -1
+    }
+    if (controller.player2.isPressed(ControllerButton.Right)) {
+        p2xDir = 1
+    }
+    if (controller.player2.isPressed(ControllerButton.Up)) {
+        p2yDir = -1
+    }
+    if (controller.player2.isPressed(ControllerButton.Down)) {
+        p2yDir = 1
+    }
+    mySprite.vx = p1xDir * p1Speed
+    mySprite.vy = p1yDir * p1Speed
+    mySprite2.vx = p2xDir * p2Speed
+    mySprite2.vy = p2yDir * p2Speed
 }
 function initVariables () {
     p1xDir = 0
@@ -8,15 +35,21 @@ function initVariables () {
     p2yDir = 0
     p1xOffset = 0
     p2xOffset = 1
+    p1Speed = 30
+    p2Speed = 30
 }
+let p2Speed = 0
+let p1Speed = 0
 let p2yDir = 0
 let p2xDir = 0
 let p1yDir = 0
 let p1xDir = 0
 let p2xOffset = 0
 let p1xOffset = 0
+let mySprite2: Sprite = null
+let mySprite: Sprite = null
 initVariables()
-let mySprite = sprites.create(img`
+mySprite = sprites.create(img`
     . f f f . f f f f . f f f . 
     f f f f f c c c c f f f f f 
     f f f f b c c c c b f f f f 
@@ -34,7 +67,7 @@ let mySprite = sprites.create(img`
     . . . . f f f f f f . . . . 
     . . . . f f . . f f . . . . 
     `, SpriteKind.Player)
-let mySprite2 = sprites.create(img`
+mySprite2 = sprites.create(img`
     . . . . f f f f . . . . . 
     . . f f f f f f f f . . . 
     . f f f f f f c f f f . . 
