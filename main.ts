@@ -1,4 +1,20 @@
 function playerMovement () {
+    if (Math.round((mySprite.x - p1xOffset) % 16) == 8) {
+        mySprite.vx = 0
+        p1xDir = 0
+    }
+    if (Math.round(mySprite.y % 16) == 8) {
+        mySprite.vy = 0
+        p1yDir = 0
+    }
+    if (Math.round((mySprite2.x - p2xOffset) % 16) == 8) {
+        mySprite2.vx = 0
+        p2xDir = 0
+    }
+    if (Math.round(mySprite2.y % 16) == 8) {
+        mySprite2.vy = 0
+        p2yDir = 0
+    }
     if (controller.left.isPressed()) {
         p1xDir = -1
     }
