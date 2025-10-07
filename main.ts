@@ -1,5 +1,11 @@
+function checkForTag () {
+    if (mySprite.overlapsWith(mySprite2) && safeTime == 0) {
+        itPlayer = 3 - itPlayer
+        safeTime = 90
+    }
+}
 function playerMovement () {
-    if (Math.round((mySprite.x - p1xOffset) % 16) == 8) {
+    if (mySprite.isHittingTile(CollisionDirection.Left) || mySprite.isHittingTile(CollisionDirection.Right) || Math.round((mySprite.x - p1xOffset) % 16) == 8) {
         mySprite.vx = 0
         p1xDir = 0
     }
@@ -7,7 +13,7 @@ function playerMovement () {
         mySprite.vy = 0
         p1yDir = 0
     }
-    if (Math.round((mySprite2.x - p2xOffset) % 16) == 8) {
+    if (mySprite2.isHittingTile(CollisionDirection.Left) || mySprite2.isHittingTile(CollisionDirection.Right) || Math.round((mySprite2.x - p2xOffset) % 16) == 8) {
         mySprite2.vx = 0
         p2xDir = 0
     }
@@ -53,6 +59,8 @@ function initVariables () {
     p2xOffset = 1
     p1Speed = 30
     p2Speed = 30
+    itPlayer = 1
+    safeTime = 0
 }
 let p2Speed = 0
 let p1Speed = 0
@@ -60,6 +68,8 @@ let p2yDir = 0
 let p2xDir = 0
 let p1yDir = 0
 let p1xDir = 0
+let itPlayer = 0
+let safeTime = 0
 let p2xOffset = 0
 let p1xOffset = 0
 let mySprite2: Sprite = null
@@ -111,4 +121,5 @@ for (let value of tiles.getTilesByType(sprites.dungeon.floorLight0)) {
 }
 game.onUpdate(function () {
     playerMovement()
+    checkForTag()
 })
